@@ -52,17 +52,18 @@ void printAuto_c(auto_c& value)
 
 int main() {
 	auto_c va1,va2,va3;
-	va1[0] << "A";
-	va1[1] << "B";
-	va1[2] << "C";
-	va1[3][0] << "YESYES";
-	va1[3][1] << "NONO";
-	va1["HE"] << "D";
-	va1["HD"] << "E";
-	va1["HF"] << "F";
-	va1["Gg"]["G"] << "GG";
-	va1["Gg"]["g"] << "gg";
+	va1 << true;
+	va2 << true;
 
+	while (true) {
+		va3 = va1 == va2;
+		if (LetObject::cast<bool>(va3)) {
+			printAuto_c(va3);
+			continue;	
+		}
+		break;
+
+	}
 	auto lecV = va1.getIndexs();
 	return 0;
 }
