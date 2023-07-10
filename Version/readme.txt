@@ -30,7 +30,8 @@ v9_1	修改当赋值为null时清除数组内部所有元素
 		增加数组的所有支持操作
 		修复getIndexs函数数字下标返回错误问题
 		修复boolean对number的转换错误问题
-
+v9_2	修复operator+( LetObject* node)缺少括号完成任意一位是数字越过第二个条件bug导致数字和字符串相加bug
+		
 
 
 
