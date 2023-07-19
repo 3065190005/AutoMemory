@@ -51,19 +51,14 @@ void printAuto_c(auto_c& value)
 
 
 int main() {
-	auto_c va1,va2,va3;
-	va1 << true;
-	va2 << true;
 
-	while (true) {
-		va3 = va1 == va2;
-		if (LetObject::cast<bool>(va3)) {
-			printAuto_c(va3);
-			continue;	
-		}
-		break;
+	std::cout << true + true << std::endl;
+	auto_c str;
+	auto_c boo;
 
-	}
-	auto lecV = va1.getIndexs();
+	str << "Hello";
+	boo << true;
+	auto_c he;
+	he = str + boo;
 	return 0;
 }
