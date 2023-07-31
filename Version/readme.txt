@@ -31,7 +31,8 @@ v9_1	修改当赋值为null时清除数组内部所有元素
 		修复getIndexs函数数字下标返回错误问题
 		修复boolean对number的转换错误问题
 v9_2	修复operator+( LetObject* node)缺少括号完成任意一位是数字越过第二个条件bug导致数字和字符串相加bug
-v9_2    修复 + - * / 对于bool数据与double读取一致导致读取错误的bug
+v9_3    修复 + - * / 对于bool数据与double读取一致导致读取错误的bug
+v9_4	更换命名空间 添加letTools类整合printAuto_c到相关类
 		
 
 
