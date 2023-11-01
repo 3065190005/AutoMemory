@@ -34,7 +34,9 @@ v9_2	ÐÞ¸´operator+( LetObject* node)È±ÉÙÀ¨ºÅÍê³ÉÈÎÒâÒ»Î»ÊÇÊý×ÖÔ½¹ýµÚ¶þ¸öÌõ¼þbugµ
 v9_3    ÐÞ¸´ + - * / ¶ÔÓÚboolÊý¾ÝÓëdouble¶ÁÈ¡Ò»ÖÂµ¼ÖÂ¶ÁÈ¡´íÎóµÄbug
 v9_4	¸ü»»ÃüÃû¿Õ¼ä Ìí¼ÓletToolsÀàÕûºÏprintAuto_cµ½Ïà¹ØÀà
 		
-
+v9_5	[*] LetObject::Tools::printAuto_c -> LetObject::Tools::print
+	[+] LetObject::Tools::println
+	[+] LetObject::Tools::StrCondition
 
 
 
