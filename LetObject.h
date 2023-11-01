@@ -266,8 +266,20 @@ namespace AutoMem {
 			LetTools() {};
 			~LetTools() {};
 
+			enum class Operator
+			{
+				None = 0,
+				Has,
+				Type,
+				Group,
+				Nature,
+				SelfNature,
+			};
+
 		public:
 			void print(auto_c& value);
+			void println(auto_c& value);
+			bool AutoCmp(std::pair<Operator,std::string> condition, auto_c& target);
 		};
 
 #include "LetObject.tpp"

@@ -9,13 +9,10 @@ using namespace AutoMem::Obj;
 int main() {
 
 	LetTools tools;
-	auto_c str;
-	auto_c boo;
+	auto_c target;
 
-	str << "Hello";
-	boo << true;
-	auto_c he;
-	he = str + boo;
-	tools.print(he);
-	return 0;
+	target["string"] << "Has string";
+	bool ret = tools.AutoCmp({ LetTools ::Operator::Type,"Array"}, target);
+		
+	return ret;
 }
