@@ -86,6 +86,66 @@ namespace AutoMem {
 			return true;
 		}
 
+		void LetObject::swap(LetObject& value)
+		{
+			LetObject temp;
+
+			// this -> temp
+			temp.Attribute = this->Attribute;
+			temp.m_block = this->m_block;
+			temp.m_letM = this->m_letM;
+			temp.m_objType = this->m_objType;
+
+			this->m_block = nullptr;
+			this->m_letM = nullptr;
+			
+
+			for (auto& i : m_num_array)
+				temp.m_num_array[i.first].swap(i.second);
+
+			for (auto& i : m_str_array)
+				temp.m_str_array[i.first].swap(i.second);
+
+			this->m_num_array.clear();
+			this->m_str_array.clear();
+
+			// value -> this
+
+			this->Attribute = value.Attribute;
+			this->m_block = value.m_block;
+			this->m_letM = value.m_letM;
+			this->m_objType = value.m_objType;
+
+			value.m_block = nullptr;
+			value.m_letM = nullptr;
+
+			for (auto& i : value.m_num_array)
+				this->m_num_array[i.first].swap(i.second);
+			for (auto& i : value.m_str_array)
+				this->m_str_array[i.first].swap(i.second);
+			
+			value.m_num_array.clear();
+			value.m_str_array.clear();
+
+			// temp -> value
+			value.Attribute = temp.Attribute;
+			value.m_block = temp.m_block;
+			value.m_letM = temp.m_letM;
+			value.m_objType = temp.m_objType;
+
+			temp.m_block = nullptr;
+			temp.m_letM = nullptr;
+
+			for (auto& i : temp.m_num_array)
+				value.m_num_array[i.first].swap(i.second);
+
+			for (auto& i : temp.m_str_array)
+				value.m_str_array[i.first].swap(i.second);
+
+			temp.m_num_array.clear();
+			temp.m_str_array.clear();
+		}
+
 		LetObject::ObjT LetObject::getType()
 		{
 			return m_objType.type;
@@ -357,4 +417,9 @@ bool AutoMem::Obj::LetTools::AutoCmp(std::pair<Operator, std::string> condition,
 		};
 
 	return cond_lamb();
+}
+
+void AutoMem::Obj::LetTools::Swap(auto_c& value1, auto_c& value2)
+{
+	value1.swap(value2);
 }

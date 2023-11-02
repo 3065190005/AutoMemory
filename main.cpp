@@ -9,10 +9,13 @@ using namespace AutoMem::Obj;
 int main() {
 
 	LetTools tools;
-	auto_c target;
+	auto_c list,var,ptr;
 
-	target["string"] << "Has string";
-	bool ret = tools.AutoCmp({ LetTools ::Operator::Type,"Array"}, target);
-		
-	return ret;
+	list["Value1"] << "Hello World";
+	var << "This is Var";
+	LetObject::reference(&ptr, &var);
+
+	tools.Swap(var, list);
+
+	return 0;
 }

@@ -38,6 +38,8 @@ v9_5	[*] LetObject::Tools::printAuto_c -> LetObject::Tools::print
 	[+] LetObject::Tools::println
 	[+] LetObject::Tools::StrCondition
 
+v9_6	[+] LetObject::Tools::Swap 交换两个元素的值，并且不获取原来的值
+
 
 
 
