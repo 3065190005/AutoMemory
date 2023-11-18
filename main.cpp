@@ -14,8 +14,8 @@ int main() {
 	list["Value1"] << "Hello World";
 	var << "This is Var";
 	LetObject::reference(&ptr, &var);
-
-	tools.Swap(var, list);
+	ptr << "AAA";
+	tools.IsRef(ptr, &var);
 
 	return 0;
 }
