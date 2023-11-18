@@ -39,7 +39,7 @@ v9_5	[*] LetObject::Tools::printAuto_c -> LetObject::Tools::print
 	[+] LetObject::Tools::StrCondition
 
 v9_6	[+] LetObject::Tools::Swap 交换两个元素的值，并且不获取原来的值
-
+v9_7	[+] LetObject::Tools::IsRef 检测Ref是否引用某个值
 
 
 
