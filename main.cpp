@@ -1,21 +1,20 @@
 #include "LetManager.h"
 #include "LetObject.h"
 #include "LetArrayMotion.h"
-
+#include <fstream>
+#include <sstream>
 #include <iostream>
 using namespace AutoMem::Obj;
 
+std::string Path = R"(C:\Users\30651\Desktop\file.bin)";
+
 
 int main() {
-
 	LetTools tools;
-	auto_c list,var,ptr;
+	auto_c var;
 
-	list["Value1"] << "Hello World";
-	var << "This is Var";
-	LetObject::reference(&ptr, &var);
-	ptr << "AAA";
-	tools.IsRef(ptr, &var);
+	tools.ReadFromBin(var, Path);
+	tools.println(var);
 
 	return 0;
 }

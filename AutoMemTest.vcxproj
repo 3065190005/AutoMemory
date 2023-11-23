@@ -149,6 +149,7 @@
     <ClCompile Include="LetManager.cpp" />
     <ClCompile Include="LetObject.cpp" />
     <ClCompile Include="LetObjectOperator.cpp" />
+    <ClCompile Include="LetTools.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
