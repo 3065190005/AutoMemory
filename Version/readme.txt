@@ -48,6 +48,7 @@ v9_9	[+] LetObject::Tools::ObjTToStr
 	[+] LetObject::Tools::ObjGToStr
 	[+] LetObject::Tools::StrToObjT
 	[+] LetObject::Tools::StrToObjG
+	修改 print 和 println 更好的数据显示
 
 
 

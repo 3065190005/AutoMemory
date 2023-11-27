@@ -19,7 +19,32 @@ int main() {
 	obj = tools.ObjGToStr(LetObject::ObjG::Dynamic);
 	std::cout << obj << std::endl;
 
-	LetObject::ObjT objt = tools.StrToObjT("String");
-	LetObject::ObjG objg = tools.StrToObjG("Static");
+
+	auto_c null;
+	auto_c undef(true, true);
+	auto_c number;
+	number << 123.4567897;
+	auto_c string;
+	string << "Hello World";
+
+    var[0] << "0 123";
+    var[1] << "1 456";
+    var["Hello"] << "Hello Abcef";
+    var["Bye"] << "Bye AAAA";
+	var["This"] << "This is Var";
+	var["World"] << "This is World Abdef";
+
+	var["list"][0] << 123456;
+	var["list"][1] << 123456.456789;
+	var["list"]["ListHel"] << "List Hello World";
+	var["list"]["listL"] << "List List List";
+
+	tools.println(null);
+	tools.println(undef);
+	tools.println(number);
+	tools.println(string);
+	tools.println(var);
+
+
 	return 0;
 }
