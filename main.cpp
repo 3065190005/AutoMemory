@@ -13,8 +13,13 @@ int main() {
 	LetTools tools;
 	auto_c var;
 
-	tools.ReadFromBin(var, Path);
-	tools.println(var);
+	std::string obj;
+	obj = tools.ObjTToStr(LetObject::ObjT::boolean);
+	std::cout << obj << std::endl;
+	obj = tools.ObjGToStr(LetObject::ObjG::Dynamic);
+	std::cout << obj << std::endl;
 
+	LetObject::ObjT objt = tools.StrToObjT("String");
+	LetObject::ObjG objg = tools.StrToObjG("Static");
 	return 0;
 }

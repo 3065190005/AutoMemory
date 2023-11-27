@@ -44,5 +44,10 @@ v9_7	[+] LetObject::Tools::IsRef 检测Ref是否引用某个值
 v9_8	[+] LetObject::Tools::ToBin 保存内存到本地bin文件
 	[+] LetObject::Tools::FromBin 从本地bin文件中读取到内存
 
+v9_9	[+] LetObject::Tools::ObjTToStr
+	[+] LetObject::Tools::ObjGToStr
+	[+] LetObject::Tools::StrToObjT
+	[+] LetObject::Tools::StrToObjG
+
 
 
