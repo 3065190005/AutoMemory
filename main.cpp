@@ -11,7 +11,7 @@ std::string Path = R"(C:\Users\30651\Desktop\file.bin)";
 
 int main() {
 	LetTools tools;
-	auto_c var, read;
+	LetObject var, read;
 
 	var[0]["Child"] << "This is Child";
 	var["str"] << "this is str index";

@@ -32,9 +32,9 @@ v9_1	修改当赋值为null时清除数组内部所有元素
 		修复boolean对number的转换错误问题
 v9_2	修复operator+( LetObject* node)缺少括号完成任意一位是数字越过第二个条件bug导致数字和字符串相加bug
 v9_3    修复 + - * / 对于bool数据与double读取一致导致读取错误的bug
-v9_4	更换命名空间 添加letTools类整合printAuto_c到相关类
+v9_4	更换命名空间 添加letTools类整合printLetObject到相关类
 		
-v9_5	[*] LetObject::Tools::printAuto_c -> LetObject::Tools::print
+v9_5	[*] LetObject::Tools::printLetObject -> LetObject::Tools::print
 	[+] LetObject::Tools::println
 	[+] LetObject::Tools::StrCondition
 
@@ -52,6 +52,6 @@ v9_9	[+] LetObject::Tools::ObjTToStr
 
 v9_10	bin文件将以大端模式进行存储
 
-v9_11	使用宏控制auto_c的缩写
+v9_11	使用宏控制LetObject的缩写
 
 

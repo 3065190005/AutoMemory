@@ -12,11 +12,11 @@
 
 #define BINHEADER 0xE4B883E5A49CE8AF9A
 
-void AutoMem::Obj::LetTools::print(auto_c& value)
+void AutoMem::Obj::LetTools::print(LetObject& value)
 {
 	if (value.getType() == LetObject::ObjT::array) {
 		std::cout << "[ ";
-		auto_c index;
+		LetObject index;
 		bool is_first = true;
 
 		for (auto& i : value.getNumArray()) {
@@ -73,13 +73,13 @@ void AutoMem::Obj::LetTools::print(auto_c& value)
 
 
 
-void AutoMem::Obj::LetTools::println(auto_c& value)
+void AutoMem::Obj::LetTools::println(LetObject& value)
 {
 	print(value);
 	std::cout << std::endl;
 }
 
-bool AutoMem::Obj::LetTools::AutoCmp(std::pair<Operator, std::string> condition, auto_c& target)
+bool AutoMem::Obj::LetTools::AutoCmp(std::pair<Operator, std::string> condition, LetObject& target)
 {
 	if (condition.second.empty())
 		return false;
@@ -92,14 +92,14 @@ bool AutoMem::Obj::LetTools::AutoCmp(std::pair<Operator, std::string> condition,
 			{
 			case AutoMem::Obj::LetTools::Operator::Has:
 			{
-				auto_c value_auto;
+				LetObject value_auto;
 				std::string value = condition.second;
 				value_auto << value;
 				auto letobject_v = target.getIndexs();
 
 				for (auto& i : letobject_v)
 				{
-					auto_c cmp_value;
+					LetObject cmp_value;
 					cmp_value = value_auto == i;
 					if (LetObject::cast<bool>(cmp_value))
 					{
@@ -183,17 +183,17 @@ bool AutoMem::Obj::LetTools::AutoCmp(std::pair<Operator, std::string> condition,
 	return cond_lamb();
 }
 
-void AutoMem::Obj::LetTools::Swap(auto_c& value1, auto_c& value2)
+void AutoMem::Obj::LetTools::Swap(LetObject& value1, LetObject& value2)
 {
 	value1.swap(value2);
 }
 
-bool AutoMem::Obj::LetTools::IsRef(auto_c& ref_value, auto_c* value)
+bool AutoMem::Obj::LetTools::IsRef(LetObject& ref_value, LetObject* value)
 {
 	return ref_value.isRef(value);
 }
 
-bool AutoMem::Obj::LetTools::ToBin(auto_c& ref_value, std::string& bin_str, bool has_header)
+bool AutoMem::Obj::LetTools::ToBin(LetObject& ref_value, std::string& bin_str, bool has_header)
 {
 	bin_str.clear();
 
@@ -222,7 +222,7 @@ bool AutoMem::Obj::LetTools::ToBin(auto_c& ref_value, std::string& bin_str, bool
 	return ret;
 }
 
-bool AutoMem::Obj::LetTools::FromBin(auto_c& ref_value, std::string& bin_str, bool has_header)
+bool AutoMem::Obj::LetTools::FromBin(LetObject& ref_value, std::string& bin_str, bool has_header)
 {
 	bool ret = true;
 	try
@@ -232,7 +232,7 @@ bool AutoMem::Obj::LetTools::FromBin(auto_c& ref_value, std::string& bin_str, bo
 			ret &= analysisFileHeader(bin_str);
 		file_size = analysisFileSize(bin_str);
 
-		auto_c var;
+		LetObject var;
 		std::string data;
 		data = bin_str.substr(0, file_size);
 		bin_str = bin_str.substr(file_size, bin_str.size());
@@ -252,7 +252,7 @@ bool AutoMem::Obj::LetTools::FromBin(auto_c& ref_value, std::string& bin_str, bo
 
 }
 
-bool AutoMem::Obj::LetTools::SaveToBin(auto_c& ref_value, std::filesystem::path path)
+bool AutoMem::Obj::LetTools::SaveToBin(LetObject& ref_value, std::filesystem::path path)
 {
 	std::string bin_str;
 	bool ret = false;
@@ -284,9 +284,9 @@ bool AutoMem::Obj::LetTools::SaveToBin(auto_c& ref_value, std::filesystem::path 
 	return ret;
 }
 
-bool AutoMem::Obj::LetTools::ReadFromBin(auto_c& ref_value, std::filesystem::path path)
+bool AutoMem::Obj::LetTools::ReadFromBin(LetObject& ref_value, std::filesystem::path path)
 {
-	auto_c bin_var;
+	LetObject bin_var;
 	std::ifstream fin(path.c_str()); 
 	if (!fin.is_open())
 		return false;
@@ -423,7 +423,7 @@ bool AutoMem::Obj::LetTools::compileFileHeader(std::string& bin_str)
 	return true;
 }
 
-bool AutoMem::Obj::LetTools::compileData(std::string& bin_str, auto_c& ref_value)
+bool AutoMem::Obj::LetTools::compileData(std::string& bin_str, LetObject& ref_value)
 {
 
 	compileDataObjS(bin_str, ref_value);
@@ -443,7 +443,7 @@ bool AutoMem::Obj::LetTools::compileData(std::string& bin_str, auto_c& ref_value
 	return true;
 }
 
-bool AutoMem::Obj::LetTools::compileDataObjS(std::string& bin_str, auto_c& ref_value)
+bool AutoMem::Obj::LetTools::compileDataObjS(std::string& bin_str, LetObject& ref_value)
 {
 	// 数据块标识
 	auto objs = ref_value.getStruct();
@@ -452,7 +452,7 @@ bool AutoMem::Obj::LetTools::compileDataObjS(std::string& bin_str, auto_c& ref_v
 	return true;
 }
 
-bool AutoMem::Obj::LetTools::compileDataAttribute(std::string& bin_str, auto_c& ref_value)
+bool AutoMem::Obj::LetTools::compileDataAttribute(std::string& bin_str, LetObject& ref_value)
 {
 	// 数据块标识
 	auto attribute = ref_value.getAttribute();
@@ -460,7 +460,7 @@ bool AutoMem::Obj::LetTools::compileDataAttribute(std::string& bin_str, auto_c& 
 	return true;
 }
 
-bool AutoMem::Obj::LetTools::compileDataNumAry(std::string& bin_str, auto_c& ref_value)
+bool AutoMem::Obj::LetTools::compileDataNumAry(std::string& bin_str, LetObject& ref_value)
 {
 	// 数组数量
 	size_t array_size = ref_value.getNumArrayPtr()->size();
@@ -480,7 +480,7 @@ bool AutoMem::Obj::LetTools::compileDataNumAry(std::string& bin_str, auto_c& ref
 	return true;
 }
 
-bool AutoMem::Obj::LetTools::compileDataStrAry(std::string& bin_str, auto_c& ref_value)
+bool AutoMem::Obj::LetTools::compileDataStrAry(std::string& bin_str, LetObject& ref_value)
 {
 	size_t array_size = ref_value.getStrArrayPtr()->size();
 	bin_str.append(toBigEndian((const char*)(&array_size), sizeof(size_t)));
@@ -503,7 +503,7 @@ bool AutoMem::Obj::LetTools::compileDataStrAry(std::string& bin_str, auto_c& ref
 	return true;
 }
 
-bool AutoMem::Obj::LetTools::compileDataValue(std::string& bin_str, auto_c& ref_value)
+bool AutoMem::Obj::LetTools::compileDataValue(std::string& bin_str, LetObject& ref_value)
 {
 	// 变量长度
 	size_t block_lens = ref_value.lens();
@@ -576,7 +576,7 @@ size_t AutoMem::Obj::LetTools::analysisFileSize(std::string& bin_str)
 	return *size_ptr;
 }
 
-bool AutoMem::Obj::LetTools::analysisData(std::string& bin_str, auto_c& ref_value)
+bool AutoMem::Obj::LetTools::analysisData(std::string& bin_str, LetObject& ref_value)
 {
 	analysisDataObjS(bin_str, ref_value);
 	analysisDataAttribute(bin_str, ref_value);
@@ -595,7 +595,7 @@ bool AutoMem::Obj::LetTools::analysisData(std::string& bin_str, auto_c& ref_valu
 	return true;
 }
 
-bool AutoMem::Obj::LetTools::analysisDataObjS(std::string& bin_str, auto_c& ref_value)
+bool AutoMem::Obj::LetTools::analysisDataObjS(std::string& bin_str, LetObject& ref_value)
 {
 	// 数据块标识
 	LetObject::ObjS objs;
@@ -621,10 +621,10 @@ bool AutoMem::Obj::LetTools::analysisDataObjS(std::string& bin_str, auto_c& ref_
 		switch (objs.type)
 		{
 		case LetObject::ObjT::null:
-			ref_value = auto_c();
+			ref_value = LetObject();
 			break;
 		case LetObject::ObjT::undef:
-			ref_value = auto_c(true, true);
+			ref_value = LetObject(true, true);
 			break;
 		case LetObject::ObjT::boolean:
 			ref_value << false;
@@ -644,7 +644,7 @@ bool AutoMem::Obj::LetTools::analysisDataObjS(std::string& bin_str, auto_c& ref_
 	return true;
 }
 
-bool AutoMem::Obj::LetTools::analysisDataAttribute(std::string& bin_str, auto_c& ref_value)
+bool AutoMem::Obj::LetTools::analysisDataAttribute(std::string& bin_str, LetObject& ref_value)
 {
 	std::string attribute_str = bin_str.substr(0, sizeof(nature));
 	attribute_str = toLittleEndian(attribute_str.c_str(), sizeof(nature));
@@ -655,7 +655,7 @@ bool AutoMem::Obj::LetTools::analysisDataAttribute(std::string& bin_str, auto_c&
 	return true;
 }
 
-bool AutoMem::Obj::LetTools::analysisDataNumAry(std::string& bin_str, auto_c& ref_value)
+bool AutoMem::Obj::LetTools::analysisDataNumAry(std::string& bin_str, LetObject& ref_value)
 {
 	// 数组数量
 	std::string array_size_str = bin_str.substr(0, sizeof(size_t));
@@ -676,7 +676,7 @@ bool AutoMem::Obj::LetTools::analysisDataNumAry(std::string& bin_str, auto_c& re
 		bin_str = bin_str.substr(sizeof(numberT), bin_str.size());
 
 		// 数据内容
-		auto_c param;
+		LetObject param;
 		analysisData(bin_str, param);
 
 		ref_value[index_number] = param;
@@ -685,7 +685,7 @@ bool AutoMem::Obj::LetTools::analysisDataNumAry(std::string& bin_str, auto_c& re
 	return true;
 }
 
-bool AutoMem::Obj::LetTools::analysisDataStrAry(std::string& bin_str, auto_c& ref_value)
+bool AutoMem::Obj::LetTools::analysisDataStrAry(std::string& bin_str, LetObject& ref_value)
 {
 	std::string array_size_str = bin_str.substr(0, sizeof(size_t));
 	array_size_str = toLittleEndian(array_size_str.c_str(), sizeof(size_t));
@@ -710,7 +710,7 @@ bool AutoMem::Obj::LetTools::analysisDataStrAry(std::string& bin_str, auto_c& re
 		
 
 		// 数据内容
-		auto_c param;
+		LetObject param;
 		analysisData(bin_str, param);
 
 		ref_value[str_index] = param;
@@ -719,7 +719,7 @@ bool AutoMem::Obj::LetTools::analysisDataStrAry(std::string& bin_str, auto_c& re
 	return true;
 }
 
-bool AutoMem::Obj::LetTools::analysisDataValue(std::string& bin_str, auto_c& ref_value)
+bool AutoMem::Obj::LetTools::analysisDataValue(std::string& bin_str, LetObject& ref_value)
 {
 	// 变量长度
 	std::string block_lens = bin_str.substr(0, sizeof(size_t));

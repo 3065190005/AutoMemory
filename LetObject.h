@@ -262,8 +262,8 @@ namespace AutoMem {
 		};
 
 #ifdef LETOBJECT_AUTO
-		using auto_c = LetObject;
-		using autoPtr = auto_c*;
+		using LetObject = LetObject;
+		using autoPtr = LetObject*;
 #endif // LETOBJECT_AUTO
 
 		/*************************
@@ -287,15 +287,15 @@ namespace AutoMem {
 			};
 
 		public:
-			void print(auto_c& value);														// 打印
-			void println(auto_c& value);													// 打印带回车
-			bool AutoCmp(std::pair<Operator,std::string> condition, auto_c& target);		// 属性对比
-			void Swap(auto_c& value1, auto_c& value2);										// 通过move 交换两个数值
-			bool IsRef(auto_c& ref_value, auto_c *value);									// 检测 ref_vlaue 是否引用 value
-			bool ToBin(auto_c& ref_value, std::string& bin_str, bool has_header = true);	// 编译为16进制
-			bool FromBin(auto_c& ref_value, std::string& bin_str, bool has_header = true);	// 16进制转换为变量
-			bool SaveToBin(auto_c& ref_value, std::filesystem::path);						// 编译的16进制保存到文件bin中
-			bool ReadFromBin(auto_c& ref_value, std::filesystem::path);						// 从文件bin中解析变量
+			void print(LetObject& value);														// 打印
+			void println(LetObject& value);													// 打印带回车
+			bool AutoCmp(std::pair<Operator,std::string> condition, LetObject& target);		// 属性对比
+			void Swap(LetObject& value1, LetObject& value2);										// 通过move 交换两个数值
+			bool IsRef(LetObject& ref_value, LetObject *value);									// 检测 ref_vlaue 是否引用 value
+			bool ToBin(LetObject& ref_value, std::string& bin_str, bool has_header = true);	// 编译为16进制
+			bool FromBin(LetObject& ref_value, std::string& bin_str, bool has_header = true);	// 16进制转换为变量
+			bool SaveToBin(LetObject& ref_value, std::filesystem::path);						// 编译的16进制保存到文件bin中
+			bool ReadFromBin(LetObject& ref_value, std::filesystem::path);						// 从文件bin中解析变量
 			std::string ObjTToStr(LetObject::ObjT objt);									// 转换ObjT 到 Str
 			std::string ObjGToStr(LetObject::ObjG objg);									// 转换ObjG 到 Str
 			LetObject::ObjT StrToObjT(std::string objt_str);									// 转换Str 到 ObjT
@@ -306,23 +306,23 @@ namespace AutoMem {
 
 		private:
 			bool compileFileHeader(std::string&);				// 编译文件头
-			bool compileData(std::string&, auto_c&);			// 编译数据内容
-			bool compileDataObjS(std::string&, auto_c&);		// 数据块标识
-			bool compileDataAttribute(std::string&, auto_c&);	// 数据块属性
-			bool compileDataNumAry(std::string&, auto_c&);		// 数字数组
-			bool compileDataStrAry(std::string&, auto_c&);		// 字符数组
-			bool compileDataValue(std::string&, auto_c&);		// 变量值
+			bool compileData(std::string&, LetObject&);			// 编译数据内容
+			bool compileDataObjS(std::string&, LetObject&);		// 数据块标识
+			bool compileDataAttribute(std::string&, LetObject&);	// 数据块属性
+			bool compileDataNumAry(std::string&, LetObject&);		// 数字数组
+			bool compileDataStrAry(std::string&, LetObject&);		// 字符数组
+			bool compileDataValue(std::string&, LetObject&);		// 变量值
 
 			bool isBigEndian();
 
 			bool analysisFileHeader(std::string&);				// 解析文件头
 			size_t analysisFileSize(std::string&);				// 解析文件大小
-			bool analysisData(std::string&, auto_c&);			// 解析文件大小
-			bool analysisDataObjS(std::string&, auto_c&);		// 数据块标识
-			bool analysisDataAttribute(std::string&, auto_c&);	// 数据块属性
-			bool analysisDataNumAry(std::string&, auto_c&);		// 数字数组
-			bool analysisDataStrAry(std::string&, auto_c&);		// 字符数组
-			bool analysisDataValue(std::string&, auto_c&);		// 获取变量值
+			bool analysisData(std::string&, LetObject&);			// 解析文件大小
+			bool analysisDataObjS(std::string&, LetObject&);		// 数据块标识
+			bool analysisDataAttribute(std::string&, LetObject&);	// 数据块属性
+			bool analysisDataNumAry(std::string&, LetObject&);		// 数字数组
+			bool analysisDataStrAry(std::string&, LetObject&);		// 字符数组
+			bool analysisDataValue(std::string&, LetObject&);		// 获取变量值
 		};
 
 		using ToolsCond = std::pair<LetTools::Operator, std::string>;

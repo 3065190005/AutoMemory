@@ -2099,13 +2099,13 @@ std::vector<LetObject> LetObject::getIndexs()
 		std::sort(vecS.begin(), vecS.end());
 
 		for (auto& i : vecN) {
-			auto_c val;
+			LetObject val;
 			val << i;
 			ret.emplace_back(std::move(val));
 		}
 
 		for (auto& i : vecS) {
-			auto_c val;
+			LetObject val;
 			val << i;
 			ret.emplace_back(std::move(val));
 		}

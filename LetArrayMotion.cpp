@@ -101,7 +101,7 @@ namespace AutoMem {
 					break;
 				}
 
-				auto_c cmpRet;
+				LetObject cmpRet;
 				cmpRet = cmp1Num->at(i) == cmp2Num->at(j);
 				if (LetObject::cast<bool>(cmpRet)) {
 					numCmp = 0;
@@ -166,7 +166,7 @@ namespace AutoMem {
 					break;
 				}
 
-				auto_c cmpRet;
+				LetObject cmpRet;
 				cmpRet = (cmp1Str->at(i) == cmp2Str->at(j));
 				if (LetObject::cast<bool>(cmpRet)) {
 					strCmp = 0;
@@ -198,7 +198,7 @@ namespace AutoMem {
 			size_t strSize = strPtr->size();
 
 			if (numSize == 0 && strSize == 0) {
-				return auto_c(false, false);
+				return LetObject(false, false);
 			}
 
 			LetObject ret;
@@ -227,7 +227,7 @@ namespace AutoMem {
 						continue;
 					}
 					else{
-						auto_c boolType = numPtr->at(i) > ret;
+						LetObject boolType = numPtr->at(i) > ret;
 						if (LetObject::cast<bool>(boolType)) {
 							ret = numPtr->at(i);
 							continue;
@@ -253,7 +253,7 @@ namespace AutoMem {
 						continue;
 					}
 					else {
-						auto_c boolType = strPtr->at(i) > ret;
+						LetObject boolType = strPtr->at(i) > ret;
 						if (LetObject::cast<bool>(boolType)) {
 							ret = strPtr->at(i);
 							continue;
@@ -274,7 +274,7 @@ namespace AutoMem {
 			size_t strSize = strPtr->size();
 
 			if (numSize == 0 && strSize == 0) {
-				return auto_c(false, false);
+				return LetObject(false, false);
 			}
 
 			LetObject ret;
@@ -301,7 +301,7 @@ namespace AutoMem {
 						continue;
 					}
 					else {
-						auto_c boolType = numPtr->at(i) < ret;
+						LetObject boolType = numPtr->at(i) < ret;
 						if (LetObject::cast<bool>(boolType)) {
 							ret = numPtr->at(i);
 							continue;
@@ -326,7 +326,7 @@ namespace AutoMem {
 						continue;
 					}
 					else {
-						auto_c boolType = strPtr->at(i) < ret;
+						LetObject boolType = strPtr->at(i) < ret;
 						if (LetObject::cast<bool>(boolType)) {
 							ret = strPtr->at(i);
 							continue;
@@ -373,7 +373,7 @@ namespace AutoMem {
 						}
 					}
 					else {
-						auto_c boolVa = i.second == va1;
+						LetObject boolVa = i.second == va1;
 						if (LetObject::cast<bool>(boolVa)) {
 							ret++;
 							continue;
@@ -392,7 +392,7 @@ namespace AutoMem {
 						}
 					}
 					else {
-						auto_c boolVa = i.second == va1;
+						LetObject boolVa = i.second == va1;
 						if (LetObject::cast<bool>(boolVa)) {
 							ret++;
 							continue;
@@ -557,7 +557,7 @@ namespace AutoMem {
 						}
 					}
 					else {
-						auto_c bolv = i.second == tar;
+						LetObject bolv = i.second == tar;
 						if (LetObject::cast<bool>(bolv)) {
 							return i.first;
 						}
@@ -574,7 +574,7 @@ namespace AutoMem {
 						}
 					}
 					else {
-						auto_c bolv = i.second == tar;
+						LetObject bolv = i.second == tar;
 						if (LetObject::cast<bool>(bolv)) {
 							return i.first;
 						}
@@ -719,7 +719,7 @@ namespace AutoMem {
 					 is = ArrayCmp(&finder->second, tar) == 0;
 				}
 				else {
-					auto_c boolva = finder->second == tar;
+					LetObject boolva = finder->second == tar;
 					is = LetObject::cast<bool>(boolva);
 				}
 
@@ -739,7 +739,7 @@ namespace AutoMem {
 					is = ArrayCmp(&finder->second, tar) == 0;
 				}
 				else {
-					auto_c boolva = finder->second == tar;
+					LetObject boolva = finder->second == tar;
 					is = LetObject::cast<bool>(boolva);
 				}
 
