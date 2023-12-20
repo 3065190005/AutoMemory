@@ -50,5 +50,8 @@ v9_9	[+] LetObject::Tools::ObjTToStr
 	[+] LetObject::Tools::StrToObjG
 	修改 print 和 println 更好的数据显示
 
+v9_10	bin文件将以大端模式进行存储
+
+v9_11	使用宏控制auto_c的缩写
 
 

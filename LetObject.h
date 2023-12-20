@@ -261,8 +261,10 @@ namespace AutoMem {
 		public: BlockArray() :LetObject(false, false) {}
 		};
 
+#ifdef LETOBJECT_AUTO
 		using auto_c = LetObject;
 		using autoPtr = auto_c*;
+#endif // LETOBJECT_AUTO
 
 		/*************************
 		* LetTools
@@ -299,6 +301,9 @@ namespace AutoMem {
 			LetObject::ObjT StrToObjT(std::string objt_str);									// 转换Str 到 ObjT
 			LetObject::ObjG StrToObjG(std::string objg_str);									// 转换Str 到 ObjG
 
+			std::string toBigEndian(const char*, size_t);		// 转换为大端
+			std::string toLittleEndian(const char*, size_t);	// 转换为小端
+
 		private:
 			bool compileFileHeader(std::string&);				// 编译文件头
 			bool compileData(std::string&, auto_c&);			// 编译数据内容
@@ -307,6 +312,8 @@ namespace AutoMem {
 			bool compileDataNumAry(std::string&, auto_c&);		// 数字数组
 			bool compileDataStrAry(std::string&, auto_c&);		// 字符数组
 			bool compileDataValue(std::string&, auto_c&);		// 变量值
+
+			bool isBigEndian();
 
 			bool analysisFileHeader(std::string&);				// 解析文件头
 			size_t analysisFileSize(std::string&);				// 解析文件大小

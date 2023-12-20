@@ -24,4 +24,6 @@ namespace AutoMem {
 #define OBJ_IF_BREAK(expr) if(expr)break
 #define OBJ_IF_RETURN(expr,var) if(expr)return var
 #define OBJ_IFB_CALL(expr,func) if(expr){func;break;}
+#define	LETOBJECT_AUTO
+
 #endif
