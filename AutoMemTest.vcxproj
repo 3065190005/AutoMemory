@@ -145,25 +145,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="LetArrayMotion.cpp" />
-    <ClCompile Include="LetManager.cpp" />
-    <ClCompile Include="LetObject.cpp" />
-    <ClCompile Include="LetObjectOperator.cpp" />
-    <ClCompile Include="LetTools.cpp" />
+    <ClCompile Include="AutoMem\LetArrayMotion.cpp" />
+    <ClCompile Include="AutoMem\LetManager.cpp" />
+    <ClCompile Include="AutoMem\LetObject.cpp" />
+    <ClCompile Include="AutoMem\LetObjectOperator.cpp" />
+    <ClCompile Include="AutoMem\LetTools.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="LetArrayMotion.h" />
-    <ClInclude Include="letMacro.h" />
-    <ClInclude Include="LetManager.h" />
-    <ClInclude Include="LetObject.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="LetArrayMotion.tpp" />
-    <None Include="LetObject.tpp" />
+    <ClInclude Include="AutoMem\LetArrayMotion.h" />
+    <ClInclude Include="AutoMem\letMacro.h" />
+    <ClInclude Include="AutoMem\LetManager.h" />
+    <ClInclude Include="AutoMem\LetObject.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Version\readme.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="AutoMem\LetArrayMotion.tpp" />
+    <None Include="AutoMem\LetObject.tpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -28,9 +28,11 @@ namespace AutoMem {
 		**********************/
 		public: 
 			static numberT ArrayCmp(LetObject* cmp1, LetObject* cmp2);
+			static numberT ArrayCmp(LetObject* cmp1, LetObject* cmp2, std::vector<std::string>);
 		private:
 			static numberT cmpNum(LetObject*, LetObject*);
 			static numberT cmpStr(LetObject*, LetObject*);
+			static numberT cmpStr(LetObject*, LetObject*, std::vector<std::string>);
 
 		/**********************
 		* 返回字符串最大值

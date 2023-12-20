@@ -13,52 +13,58 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="源文件\AutoMem">
+      <UniqueIdentifier>{c300aaee-4989-4e8f-9af5-42a79eede4fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\AutoMem">
+      <UniqueIdentifier>{020cd244-20ac-434d-a32a-205cb24cff72}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="LetObject.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="AutoMem\LetArrayMotion.cpp">
+      <Filter>源文件\AutoMem</Filter>
     </ClCompile>
-    <ClCompile Include="LetManager.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="AutoMem\LetManager.cpp">
+      <Filter>源文件\AutoMem</Filter>
     </ClCompile>
-    <ClCompile Include="LetObjectOperator.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="AutoMem\LetObject.cpp">
+      <Filter>源文件\AutoMem</Filter>
     </ClCompile>
-    <ClCompile Include="LetArrayMotion.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="AutoMem\LetObjectOperator.cpp">
+      <Filter>源文件\AutoMem</Filter>
     </ClCompile>
-    <ClCompile Include="LetTools.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="AutoMem\LetTools.cpp">
+      <Filter>源文件\AutoMem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="letMacro.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="AutoMem\LetArrayMotion.h">
+      <Filter>头文件\AutoMem</Filter>
     </ClInclude>
-    <ClInclude Include="LetManager.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="AutoMem\letMacro.h">
+      <Filter>头文件\AutoMem</Filter>
     </ClInclude>
-    <ClInclude Include="LetObject.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="AutoMem\LetManager.h">
+      <Filter>头文件\AutoMem</Filter>
     </ClInclude>
-    <ClInclude Include="LetArrayMotion.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="AutoMem\LetObject.h">
+      <Filter>头文件\AutoMem</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="LetObject.tpp">
-      <Filter>源文件</Filter>
-    </None>
-    <None Include="LetArrayMotion.tpp">
-      <Filter>源文件</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Text Include="Version\readme.txt">
       <Filter>资源文件</Filter>
     </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="AutoMem\LetArrayMotion.tpp">
+      <Filter>源文件\AutoMem</Filter>
+    </None>
+    <None Include="AutoMem\LetObject.tpp">
+      <Filter>源文件\AutoMem</Filter>
+    </None>
   </ItemGroup>
 </Project>

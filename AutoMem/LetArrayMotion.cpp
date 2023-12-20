@@ -51,6 +51,54 @@ namespace AutoMem {
 			return 2;
 		}
 
+		numberT LetArrayMotion::ArrayCmp(LetObject* cmp1, LetObject* cmp2, std::vector<std::string> jmp_array)
+		{
+			if (cmp1->getType() != LetObject::ObjT::array || cmp2->getType() != LetObject::ObjT::array) {
+				return 2;
+			}
+
+			auto numPtr1 = cmp1->getNumArrayPtr()->size();
+			auto strPtr1 = cmp1->getStrArrayPtr()->size();
+
+			auto numPtr2 = cmp2->getNumArrayPtr()->size();
+			auto strPtr2 = cmp2->getStrArrayPtr()->size();
+
+			numberT lens = 2;
+			if (numPtr1 == numPtr2) {
+				if (strPtr1 == strPtr2) {
+					lens = 0;
+				}
+				else if (strPtr1 > strPtr2) {
+					lens = -1;
+				}
+				else {
+					lens = 1;
+				}
+			}
+			else if (numPtr1 > numPtr2) {
+				lens = -1;
+			}
+			else {
+				lens = 1;
+			}
+
+			numberT numCmp = cmpNum(cmp1, cmp2);
+			numberT strCmp = cmpStr(cmp1, cmp2, jmp_array);
+
+			if (numCmp != 0)
+				return numCmp;
+			else if (strCmp != 0)
+				return strCmp;
+			else if (numCmp == 0 && numCmp == strCmp) {
+				if (lens != 2) {
+					return lens;
+				}
+				return numCmp;
+			}
+
+			return 2;
+		}
+
 		numberT LetArrayMotion::cmpNum(LetObject* cmp1, LetObject* cmp2)
 		{
 			if (cmp1->getType() != LetObject::ObjT::array || cmp2->getType() != LetObject::ObjT::array) {
@@ -165,6 +213,78 @@ namespace AutoMem {
 					if (strCmp == 0) continue;
 					break;
 				}
+
+				LetObject cmpRet;
+				cmpRet = (cmp1Str->at(i) == cmp2Str->at(j));
+				if (LetObject::cast<bool>(cmpRet)) {
+					strCmp = 0;
+					continue;
+				}
+
+				cmpRet = cmp1Str->at(i) > cmp2Str->at(j);
+				if (LetObject::cast<bool>(cmpRet)) {
+					strCmp = -1;
+					break;
+				}
+
+				cmpRet = cmp1Str->at(i) < cmp2Str->at(j);
+				if (LetObject::cast<bool>(cmpRet)) {
+					strCmp = 1;
+					break;
+				}
+			}
+
+			return strCmp;
+		}
+
+		numberT LetArrayMotion::cmpStr(LetObject* cmp1, LetObject* cmp2, std::vector<std::string> jmp_array)
+		{
+			if (cmp1->getType() != LetObject::ObjT::array || cmp2->getType() != LetObject::ObjT::array) {
+				return 2;
+			}
+
+			auto cmp1Str = cmp1->getStrArrayPtr();
+			auto cmp2Str = cmp2->getStrArrayPtr();
+
+			auto cmp1StrCount = cmp1Str->size();
+			auto cmp2StrCount = cmp2Str->size();
+
+			size_t strSize = cmp1StrCount > cmp2StrCount ? cmp2StrCount : cmp1StrCount;
+
+			numberT strCmp = 2;
+			auto iptr = cmp1Str->begin();
+			auto jptr = cmp2Str->begin();
+
+			if (strSize == 0) {
+				if (cmp1StrCount > cmp2StrCount) strCmp = -1;
+				else if (cmp1StrCount < cmp2StrCount) strCmp = 1;
+				else strCmp = 0;
+			}
+
+			for (auto in = 0; in < strSize; in++, iptr++, jptr++) {
+
+				auto [i, j] = std::pair(iptr->first, jptr->first);
+
+				auto cmp1Type = cmp1Str->at(i).getType();
+				auto cmp2Type = cmp2Str->at(j).getType();
+
+				if (cmp1Type != cmp2Type) {
+					if (cmp1Type > cmp2Type) { strCmp = -1; break; }
+					if (cmp1Type < cmp2Type) { strCmp = 1; break; }
+				}
+
+				if (cmp1Type == LetObject::ObjT::array) {
+					strCmp = ArrayCmp(&cmp1Str->at(i), &cmp2Str->at(j));
+					if (strCmp == 0) continue;
+					break;
+				}
+
+				auto jmp_ary_beg = jmp_array.begin();
+				auto jmp_ary_end = jmp_array.end();
+
+				auto jmp_finder = std::find(jmp_ary_beg, jmp_ary_end, i);
+				if (jmp_finder != jmp_ary_end)
+					continue;
 
 				LetObject cmpRet;
 				cmpRet = (cmp1Str->at(i) == cmp2Str->at(j));

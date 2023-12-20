@@ -1,6 +1,8 @@
 #include "LetManager.h"
 #include "LetObject.h"
 
+using namespace AutoMem::Obj;
+
 #define thisPtr \
 LetObject* _this = this;\
 while (true) {\
@@ -18,8 +20,6 @@ while((node->Attribute & (int)NatureType::ptr) == true)\
 { node = (LetObject*)*(unsigned long long*)node->m_block->ptr;}
 
 #define _this _this
-
-using namespace AutoMem::Obj;
 
 template<typename castT>
 inline castT LetObject::cast(LetObject&node)

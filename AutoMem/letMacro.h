@@ -14,6 +14,7 @@ namespace AutoMem {
 			none = 0 << 0,
 			ptr = 1 << 0,
 			cls = 1 << 1,
+			function = 128,
 		};
 	}
 }

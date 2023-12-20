@@ -53,5 +53,7 @@ v9_9	[+] LetObject::Tools::ObjTToStr
 v9_10	bin文件将以大端模式进行存储
 
 v9_11	使用宏控制LetObject的缩写
+	LetArrayMotion::ArrayCmp 添加跳过指定字符串函数
+	添加新的Attribute -> function
 
 

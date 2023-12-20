@@ -418,7 +418,17 @@ AutoMem::Obj::LetObject::ObjG AutoMem::Obj::LetTools::StrToObjG(std::string objg
 
 bool AutoMem::Obj::LetTools::compileFileHeader(std::string& bin_str)
 {
-	const char header_chars[9]{ 0xE4, 0xB8 ,0x83,0xE5,0xA4,0x9C,0xE8,0xAF,0x9A };
+	char header_chars[9]{
+		(char)0xE4, 
+		(char)0xB8,
+		(char)0x83,
+		(char)0xE5,
+		(char)0xA4,
+		(char)0x9C,
+		(char)0xE8,
+		(char)0xAF,
+		(char)0x9A };
+
 	bin_str.append(header_chars, 9);
 	return true;
 }
@@ -552,7 +562,16 @@ std::string AutoMem::Obj::LetTools::toLittleEndian(const char* cstr, size_t lens
 
 bool AutoMem::Obj::LetTools::analysisFileHeader(std::string& bin_str)
 {
-	char header_chars[9]{ 0xE4, 0xB8 ,0x83,0xE5,0xA4,0x9C,0xE8,0xAF,0x9A };
+	char header_chars[9]{ 
+		(char)0xE4, 
+		(char)0xB8,
+		(char)0x83,
+		(char)0xE5,
+		(char)0xA4,
+		(char)0x9C,
+		(char)0xE8,
+		(char)0xAF,
+		(char)0x9A };
 	std::string header = bin_str.substr(0, 9);
 	for (auto i = 0; i < 9; i++)
 	{

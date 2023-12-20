@@ -11,6 +11,8 @@
 #include <iostream>
 #include <filesystem>
 
+#include "LetManager.h"
+
 namespace AutoMem {
 	namespace Obj {
 
