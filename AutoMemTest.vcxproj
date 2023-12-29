@@ -117,8 +117,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>
-      </AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>E:\VsPro\CerviceScript\AutoMemTest\NewObject\headers;E:\VsPro\CerviceScript\AutoMemTest\NewObject\sources;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -134,8 +133,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>
-      </AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>E:\VsPro\CerviceScript\AutoMemTest\NewObject\headers;E:\VsPro\CerviceScript\AutoMemTest\NewObject\sources;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -151,12 +149,20 @@
     <ClCompile Include="AutoMem\LetObjectOperator.cpp" />
     <ClCompile Include="AutoMem\LetTools.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="NewObject\sources\CerObject.cpp" />
+    <ClCompile Include="NewObject\sources\CerObjectDebug.cpp" />
+    <ClCompile Include="NewObject\sources\CerObjectDef.cpp" />
+    <ClCompile Include="NewObject\sources\CerObjectManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AutoMem\LetArrayMotion.h" />
     <ClInclude Include="AutoMem\letMacro.h" />
     <ClInclude Include="AutoMem\LetManager.h" />
     <ClInclude Include="AutoMem\LetObject.h" />
+    <ClInclude Include="NewObject\headers\CerObject.h" />
+    <ClInclude Include="NewObject\headers\CerObjectDebug.h" />
+    <ClInclude Include="NewObject\headers\CerObjectDef.h" />
+    <ClInclude Include="NewObject\headers\CerObjectManager.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Version\readme.txt" />

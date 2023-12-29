@@ -19,6 +19,12 @@
     <Filter Include="头文件\AutoMem">
       <UniqueIdentifier>{020cd244-20ac-434d-a32a-205cb24cff72}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\NewObject">
+      <UniqueIdentifier>{db5ae0b1-27ad-4389-b6e2-030c4df01747}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\NewObject">
+      <UniqueIdentifier>{6f8f6b0e-74ad-4392-9689-2a58bdbb2ffd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -39,6 +45,18 @@
     <ClCompile Include="AutoMem\LetTools.cpp">
       <Filter>源文件\AutoMem</Filter>
     </ClCompile>
+    <ClCompile Include="NewObject\sources\CerObject.cpp">
+      <Filter>源文件\NewObject</Filter>
+    </ClCompile>
+    <ClCompile Include="NewObject\sources\CerObjectDebug.cpp">
+      <Filter>源文件\NewObject</Filter>
+    </ClCompile>
+    <ClCompile Include="NewObject\sources\CerObjectDef.cpp">
+      <Filter>源文件\NewObject</Filter>
+    </ClCompile>
+    <ClCompile Include="NewObject\sources\CerObjectManager.cpp">
+      <Filter>源文件\NewObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AutoMem\LetArrayMotion.h">
@@ -52,6 +70,18 @@
     </ClInclude>
     <ClInclude Include="AutoMem\LetObject.h">
       <Filter>头文件\AutoMem</Filter>
+    </ClInclude>
+    <ClInclude Include="NewObject\headers\CerObject.h">
+      <Filter>头文件\NewObject</Filter>
+    </ClInclude>
+    <ClInclude Include="NewObject\headers\CerObjectDebug.h">
+      <Filter>头文件\NewObject</Filter>
+    </ClInclude>
+    <ClInclude Include="NewObject\headers\CerObjectDef.h">
+      <Filter>头文件\NewObject</Filter>
+    </ClInclude>
+    <ClInclude Include="NewObject\headers\CerObjectManager.h">
+      <Filter>头文件\NewObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
