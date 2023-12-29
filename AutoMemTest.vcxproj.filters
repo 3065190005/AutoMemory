@@ -83,6 +83,9 @@
     <ClInclude Include="NewObject\headers\CerObjectManager.h">
       <Filter>头文件\NewObject</Filter>
     </ClInclude>
+    <ClInclude Include="NewObject\headers\Object.h">
+      <Filter>头文件\NewObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="Version\readme.txt">

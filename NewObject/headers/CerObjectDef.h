@@ -121,6 +121,9 @@ namespace ScriptC
 		/* 死亡变量回收callback */
 		using DropCallBack = std::function<BooleanT(ObjectRefer ref)>;
 
+		/* throw操作callback */
+		using ErrorCallBack = std::function<void(String)>;
+
 		/* 内存流集合 */
 		struct MemeryStruct
 		{

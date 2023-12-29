@@ -19,14 +19,17 @@ namespace ScriptC
 
 		class CerObject
 		{
+			/* refer操作 */
 			void setRefer(ObjectRefer);
+			ObjectRefer getRefer();
 
+			CerObject(); // 只能通过静态函数创建
 		public:
 			~CerObject();
-			CerObject();
 			CerObject(const CerObject& signal);
 			CerObject(CerObject&& signal);
 
+			/* 创建相关值 */
 			static CerObject null();
 			static CerObject undef(UndefT);
 			static CerObject boolean(BooleanT);
@@ -36,11 +39,47 @@ namespace ScriptC
 			static CerObject array(ArrayMaker&);
 			static CerObject structure(StructMaker&);
 
+			/* 静态模板创建函数 */
 			template<typename... Args>
 			static ArrayMaker makeArray(Args&&... value);
 
 			template<typename... T>
 			static StructMaker makeStruct(StringPair<T>... pack);
+
+
+			/* 算术运算符 */
+			CerObject operator+(CerObject&);
+			CerObject operator-(CerObject&);
+			CerObject operator*(CerObject&);
+			CerObject operator/(CerObject&);
+			CerObject operator%(CerObject&);
+
+			/* 关系运算符 */
+			CerObject operator==(CerObject&);
+			CerObject operator!=(CerObject&);
+			CerObject operator>(CerObject&);
+			CerObject operator<(CerObject&);
+			CerObject operator>=(CerObject&);
+			CerObject operator<=(CerObject&);
+
+			/* 逻辑运算符 */
+			CerObject operator&&(CerObject&);
+			CerObject operator||(CerObject&);
+			CerObject operator!();
+
+			/* 赋值操作符 */
+			CerObject& operator=(CerObject&);
+
+			/* 杂项运算符 */
+			CerObject operator[](CerObject&);
+			CerObject dot(CerObject&);
+
+		private:
+			/* 工具函数 */
+			ObjectType getType();
+			String getTypeStr();
+			String replaceMapString(String, Map<String, String>);
+			void ifNotThrow(String, BooleanT);
 
 		private:
 			ObjectRefer m_refer;

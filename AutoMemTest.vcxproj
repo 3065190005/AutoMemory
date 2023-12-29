@@ -163,6 +163,7 @@
     <ClInclude Include="NewObject\headers\CerObjectDebug.h" />
     <ClInclude Include="NewObject\headers\CerObjectDef.h" />
     <ClInclude Include="NewObject\headers\CerObjectManager.h" />
+    <ClInclude Include="NewObject\headers\Object.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Version\readme.txt" />

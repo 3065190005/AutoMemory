@@ -10,6 +10,7 @@ namespace ScriptC
 		class CerObjectDebug
 		{
 		public:
+			static MemeryInfo debugObjectListInfo(const ObjectList&);
 			static MemeryInfo debugMemerysInfo();
 			static MemeryInfo debugDeadMemeryInfo();
 			static void debugPrintInfo(MemeryInfo);

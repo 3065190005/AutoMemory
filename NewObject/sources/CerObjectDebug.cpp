@@ -5,29 +5,11 @@ namespace ScriptC
 {
 	namespace Obj
 	{
-		MemeryInfo Obj::CerObjectDebug::debugMemerysInfo()
+		MemeryInfo CerObjectDebug::debugObjectListInfo(const ObjectList& object_list)
 		{
 			auto manager = CerObjectManager::getInstance();
-			auto m_memerys = manager->getMemerys();
+			auto& m_memerys = object_list;
 
-			MemeryInfo info;
-			info["null"] = m_memerys.m_null.size();
-			info["undef"] = m_memerys.m_undef.size();
-			info["boolean"] = m_memerys.m_boolean.size();
-			info["number"] = m_memerys.m_number.size();
-			info["string"] = m_memerys.m_string.size();
-			info["function"] = m_memerys.m_function.size();
-			info["array"] = m_memerys.m_array.size();
-			info["structure"] = m_memerys.m_structure.size();
-
-			return info;
-		}
-
-
-		MemeryInfo Obj::CerObjectDebug::debugDeadMemeryInfo()
-		{
-			auto manager = CerObjectManager::getInstance();
-			
 			USize
 				null_size{ 0 },
 				undef_size{ 0 },
@@ -36,42 +18,50 @@ namespace ScriptC
 				string_size{ 0 },
 				function_size{ 0 },
 				array_size{ 0 },
-				structure_size{ 0 };
+				structure_size{ 0 },
+				total_size{ 0 };
 
-			for (auto& i : manager->getDeadMemery())
+			MemeryInfo info;
+			for (auto& i : m_memerys)
 			{
 				switch (i.m_type)
 				{
 				case ScriptC::Obj::null:
 					null_size++;
+					total_size++;
 					break;
 				case ScriptC::Obj::undef:
 					undef_size++;
+					total_size++;
 					break;
 				case ScriptC::Obj::boolean:
 					boolean_size++;
+					total_size++;
 					break;
 				case ScriptC::Obj::number:
 					number_size++;
+					total_size++;
 					break;
 				case ScriptC::Obj::string:
 					string_size++;
+					total_size++;
 					break;
 				case ScriptC::Obj::function:
 					function_size++;
+					total_size++;
 					break;
 				case ScriptC::Obj::array:
 					array_size++;
+					total_size++;
 					break;
 				case ScriptC::Obj::structure:
 					structure_size++;
+					total_size++;
 					break;
 				default:
 					break;
 				}
 			}
-
-			MemeryInfo info;
 
 			info["null"] = null_size;
 			info["undef"] = undef_size;
@@ -81,8 +71,21 @@ namespace ScriptC
 			info["function"] = function_size;
 			info["array"] = array_size;
 			info["structure"] = structure_size;
+			info["total"] = total_size;
 
 			return info;
+		}
+		MemeryInfo Obj::CerObjectDebug::debugMemerysInfo()
+		{
+			auto manager = CerObjectManager::getInstance();
+			return debugObjectListInfo(manager->getMemerys());
+		}
+
+
+		MemeryInfo Obj::CerObjectDebug::debugDeadMemeryInfo()
+		{
+			auto manager = CerObjectManager::getInstance();
+			return debugObjectListInfo(manager->getDeadMemery());
 		}
 
 		void CerObjectDebug::debugPrintInfo(MemeryInfo info)
@@ -94,7 +97,7 @@ namespace ScriptC
 				total += i.second;
 			}
 
-			debugPrint("\n-------------\ntotal : %ld\n\n", total);
+			debugPrint("\n-------------\n\n", total);
 		}
 		void CerObjectDebug::debugPrintByRef(ObjectRefer refer)
 		{

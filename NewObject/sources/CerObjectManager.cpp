@@ -13,26 +13,46 @@ namespace ScriptC
 	namespace Obj
 	{
 		CerObjectManager* CerObjectManager::m_instance = nullptr;
+
+		DropCallBack CerObjectManager::m_deadcall = [](ObjectRefer) {return true; };
+		ErrorCallBack CerObjectManager::m_errorcall = [](String str) {throw(str); };
+
 		CerObjectManager* Obj::CerObjectManager::getInstance()
 		{
 			if (m_instance == nullptr)
 			{
 				auto temp = new (std::nothrow) CerObjectManager();
 				m_instance = temp;
-				m_instance->m_callback = [&](ObjectRefer) {return true; };
 			}
 
 			return m_instance;
 		}
 
+		void CerObjectManager::throwError(String str)
+		{
+			m_errorcall(str);
+		}
 
+		void CerObjectManager::setDropCallBack(DropCallBack callback)
+		{
+			getInstance();
+
+			m_deadcall = callback;
+		}
+
+		void CerObjectManager::setErrorCallBack(ErrorCallBack callback)
+		{
+			m_errorcall = callback;
+		}
+
+		/* 创建不同类型的 Ref */
 		ObjectRefer CerObjectManager::createRef()
 		{
 			ObjectStruct null_ref;
 			null_ref.m_type = ObjectType::null;
 
-			m_memerys.m_null.push_front(null_ref);
-			return m_memerys.m_null.begin();
+			m_memerys.push_front(null_ref);
+			return m_memerys.begin();
 		}
 
 		ObjectRefer CerObjectManager::createRef(UndefT undef_var)
@@ -41,8 +61,8 @@ namespace ScriptC
 			undef_ref.m_undef = undef_var;
 			undef_ref.m_type = ObjectType::undef;
 
-			m_memerys.m_undef.push_front(undef_ref);
-			return m_memerys.m_undef.begin();
+			m_memerys.push_front(undef_ref);
+			return m_memerys.begin();
 		}
 
 		ObjectRefer CerObjectManager::createRef(BooleanT bool_var)
@@ -51,8 +71,8 @@ namespace ScriptC
 			bool_ref.m_bool = bool_var;
 			bool_ref.m_type = ObjectType::boolean;
 
-			m_memerys.m_boolean.push_front(bool_ref);
-			return m_memerys.m_boolean.begin();
+			m_memerys.push_front(bool_ref);
+			return m_memerys.begin();
 		}
 
 		ObjectRefer CerObjectManager::createRef(NumberT number_var)
@@ -61,8 +81,8 @@ namespace ScriptC
 			number_ref.m_number = number_var;
 			number_ref.m_type = ObjectType::number;
 
-			m_memerys.m_number.push_front(number_ref);
-			return m_memerys.m_number.begin();
+			m_memerys.push_front(number_ref);
+			return m_memerys.begin();
 		}
 
 		ObjectRefer Obj::CerObjectManager::createRef(StringT string_var)
@@ -71,8 +91,8 @@ namespace ScriptC
 			string_ref.m_string = string_var;
 			string_ref.m_type = ObjectType::string;
 
-			m_memerys.m_string.push_front(string_ref);
-			return m_memerys.m_string.begin();
+			m_memerys.push_front(string_ref);
+			return m_memerys.begin();
 		}
 
 		ObjectRefer Obj::CerObjectManager::createRef(FunctionT function_var)
@@ -81,8 +101,8 @@ namespace ScriptC
 			function_ref.m_function = function_var;
 			function_ref.m_type = ObjectType::function;
 
-			m_memerys.m_function.push_front(function_ref);
-			return m_memerys.m_function.begin();
+			m_memerys.push_front(function_ref);
+			return m_memerys.begin();
 		}
 
 		ObjectRefer Obj::CerObjectManager::createRef(ArrayT array_var)
@@ -93,11 +113,11 @@ namespace ScriptC
 			array_ref.m_array = arrayCopy(array_var);
 			array_ref.m_type = ObjectType::array;
 
-			m_memerys.m_array.push_front(array_ref);
-			return m_memerys.m_array.begin();
+			m_memerys.push_front(array_ref);
+			return m_memerys.begin();
 		}
 
-		ObjectRefer Obj::CerObjectManager::createRef(StructT struct_var)
+		ObjectRefer CerObjectManager::createRef(StructT struct_var)
 		{
 			ObjectStruct struct_ref;
 
@@ -105,14 +125,90 @@ namespace ScriptC
 			struct_ref.m_struct = structCopy(struct_var);
 			struct_ref.m_type = ObjectType::structure;
 
-			m_memerys.m_structure.push_front(struct_ref);
-			return m_memerys.m_structure.begin();
+			m_memerys.push_front(struct_ref);
+			return m_memerys.begin();
 		}
 
+
+		ObjectRefer CerObjectManager::createRef(StructT, ObjectRefer refer)
+		{
+			return refer;
+		}
+
+		/* 创建不同类型的 ObjectStruct */
+		ObjectStruct CerObjectManager::createStruct()
+		{
+			ObjectStruct null_struct;
+			null_struct.m_type = ObjectType::null;
+			return null_struct;
+		}
+
+		ObjectStruct CerObjectManager::createStruct(UndefT undef_var)
+		{
+			ObjectStruct undef_struct;
+			undef_struct.m_undef = undef_var;
+			undef_struct.m_type = ObjectType::undef;
+			return undef_struct;
+		}
+
+		ObjectStruct CerObjectManager::createStruct(BooleanT bool_var)
+		{
+			ObjectStruct bool_struct;
+			bool_struct.m_bool = bool_var;
+			bool_struct.m_type = ObjectType::boolean;
+			return bool_struct;
+		}
+
+		ObjectStruct CerObjectManager::createStruct(NumberT number_var)
+		{
+			ObjectStruct number_struct;
+			number_struct.m_number = number_var;
+			number_struct.m_type = ObjectType::number;
+			return number_struct;
+		}
+
+		ObjectStruct CerObjectManager::createStruct(StringT string_var)
+		{
+			ObjectStruct string_struct;
+			string_struct.m_string = string_var;
+			string_struct.m_type = ObjectType::string;
+			return string_struct;
+		}
+
+		ObjectStruct CerObjectManager::createStruct(FunctionT function_var)
+		{
+			ObjectStruct function_struct;
+			function_struct.m_function = function_var;
+			function_struct.m_type = ObjectType::function;
+			return function_struct;
+		}
+
+		ObjectStruct CerObjectManager::createStruct(ArrayT array_var, ObjectRefer refer)
+		{
+			ObjectStruct array_struct;
+
+			// array_struct.m_array = array_var;
+			array_struct.m_array = arrayCopy(array_var);
+			array_struct.m_type = ObjectType::array;
+			return array_struct;
+		}
+
+		ObjectStruct CerObjectManager::createStruct(StructT struct_var, ObjectRefer refer)
+		{
+			ObjectStruct struct_struct;
+
+			// struct_struct.m_struct = struct_var;
+			struct_struct.m_struct = structCopy(struct_var);
+
+			struct_struct.m_type = ObjectType::structure;
+			return struct_struct;
+		}
+
+		/* Array类型的Copy */
 		ArrayT Obj::CerObjectManager::arrayCopy(ArrayT array_var)
 		{
 			ArrayT ret_array;
-
+			
 			for (auto& i : array_var)
 			{
 				switch (i->m_type)
@@ -139,10 +235,10 @@ namespace ScriptC
 					ret_array.push_back(createRef(i->m_array));
 					break;
 				case ScriptC::Obj::structure:
-					ret_array.push_back(createRef(i->m_struct));
+					ret_array.push_back(createRef(i->m_struct, i));
 					break;
 				default:
-					throw("unrealized or unknow");
+					throwError("unrealized or unknow");
 					break;
 				}
 			}
@@ -152,14 +248,6 @@ namespace ScriptC
 
 		StructT Obj::CerObjectManager::structCopy(StructT struct_var)
 		{
-			for (auto& i : struct_var)
-			{
-				i.second->m_ref++;
-
-				if (i.second->m_type == ObjectType::structure)
-					structCopy(i.second->m_struct);
-			}
-
 			return struct_var;
 		}
 
@@ -190,47 +278,13 @@ namespace ScriptC
 			if (refer->m_ref > 0)
 				return refer;
 
-			auto memery_list = getListByType(refer->m_type);
+			auto& memery_list = m_memerys;
 
-			m_callback(refer);
+			m_deadcall(refer);
 
 			m_dead_memery.emplace_front(std::move(*refer));
-			memery_list->erase(refer);
+			memery_list.erase(refer);
 			return m_dead_memery.begin();
-		}
-
-		ObjectList* CerObjectManager::getListByType(ObjectType type)
-		{
-			switch (type)
-			{
-			case ScriptC::Obj::null:
-				return &m_memerys.m_null;
-				break;
-			case ScriptC::Obj::undef:
-				return &m_memerys.m_undef;
-				break;
-			case ScriptC::Obj::boolean:
-				return &m_memerys.m_boolean;
-				break;
-			case ScriptC::Obj::number:
-				return &m_memerys.m_number;
-				break;
-			case ScriptC::Obj::string:
-				return &m_memerys.m_string;
-				break;
-			case ScriptC::Obj::function:
-				return &m_memerys.m_function;
-				break;
-			case ScriptC::Obj::array:
-				return &m_memerys.m_array;
-				break;
-			case ScriptC::Obj::structure:
-				return &m_memerys.m_structure;
-				break;
-			default:
-				throw("Error getListByType switch deafult");
-				break;
-			}
 		}
 
 		ObjectRefer Obj::CerObjectManager::joinRef(ObjectRefer refer)
@@ -244,6 +298,8 @@ namespace ScriptC
 					i = joinRef(i);
 				break;
 			case ScriptC::Obj::structure:
+				for (auto& i : refer->m_struct)
+					i.second = joinRef(i.second);
 				break;
 			default:
 				break;
@@ -253,7 +309,7 @@ namespace ScriptC
 		}
 
 
-		const MemeryStruct& Obj::CerObjectManager::getMemerys() const
+		const ObjectList& Obj::CerObjectManager::getMemerys() const
 		{
 			return m_memerys;
 		}
@@ -263,9 +319,56 @@ namespace ScriptC
 			return m_dead_memery;
 		}
 
-		void Obj::CerObjectManager::setCallBack(DropCallBack callback)
+		ObjectStruct CerObjectManager::assigment(ObjectRefer refer)
 		{
-			m_callback = callback;
+			ObjectStruct ret_struct;
+			switch (refer->m_type)
+			{
+			case ScriptC::Obj::null:
+				return createStruct();
+			case ScriptC::Obj::undef:
+				return createStruct(refer->m_undef);
+				break;
+			case ScriptC::Obj::boolean:
+				return createStruct(refer->m_bool);
+				break;
+			case ScriptC::Obj::number:
+				return createStruct(refer->m_number);
+				break;
+			case ScriptC::Obj::string:
+				return createStruct(refer->m_string);
+				break;
+			case ScriptC::Obj::function:
+				return createStruct(refer->m_function);
+				break;
+			case ScriptC::Obj::array:
+				return createStruct(refer->m_array, refer);
+				break;
+			case ScriptC::Obj::structure:
+				return createStruct(refer->m_struct, refer);
+				break;
+			default:
+				throwError("assigment == deafult");
+				break;
+			}
+
+			return ret_struct;
+		}
+
+		ObjectRefer CerObjectManager::setReferStruct(ObjectRefer refer, ObjectStruct&& object_struct)
+		{
+			USize ref = refer->m_ref;
+
+			ObjectRefer temp = joinRef(createRef());
+			*temp = std::move(*refer);
+
+			while (temp->m_ref != 0)
+				temp = leaveRef(temp);
+			
+			*refer = object_struct;
+			refer = joinRef(refer);
+			refer->m_ref = ref;
+			return refer;
 		}
 
 		void Obj::CerObjectManager::dropDead()
