@@ -57,6 +57,9 @@
     <ClCompile Include="NewObject\sources\CerObjectManager.cpp">
       <Filter>源文件\NewObject</Filter>
     </ClCompile>
+    <ClCompile Include="NewObject\sources\CerMemery.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AutoMem\LetArrayMotion.h">
@@ -85,6 +88,9 @@
     </ClInclude>
     <ClInclude Include="NewObject\headers\Object.h">
       <Filter>头文件\NewObject</Filter>
+    </ClInclude>
+    <ClInclude Include="NewObject\headers\CerMemery.h">
+      <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

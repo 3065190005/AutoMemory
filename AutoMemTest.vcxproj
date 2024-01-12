@@ -149,6 +149,7 @@
     <ClCompile Include="AutoMem\LetObjectOperator.cpp" />
     <ClCompile Include="AutoMem\LetTools.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="NewObject\sources\CerMemery.cpp" />
     <ClCompile Include="NewObject\sources\CerObject.cpp" />
     <ClCompile Include="NewObject\sources\CerObjectDebug.cpp" />
     <ClCompile Include="NewObject\sources\CerObjectDef.cpp" />
@@ -159,6 +160,7 @@
     <ClInclude Include="AutoMem\letMacro.h" />
     <ClInclude Include="AutoMem\LetManager.h" />
     <ClInclude Include="AutoMem\LetObject.h" />
+    <ClInclude Include="NewObject\headers\CerMemery.h" />
     <ClInclude Include="NewObject\headers\CerObject.h" />
     <ClInclude Include="NewObject\headers\CerObjectDebug.h" />
     <ClInclude Include="NewObject\headers\CerObjectDef.h" />
